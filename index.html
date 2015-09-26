@@ -1,0 +1,39 @@
+<form class="calculator" ng-app>
+	<div class="inputs">
+		<label>Стоимость установки (руб.)</label>
+		<input type="number" ng-model="cost" ng-init="cost=13500" placeholder="13500">
+    		<div class="clearfix"></div>
+
+		<label>Цена литра бензина (руб.)</label>
+		<input type="number" ng-model="gasoline" ng-init="gasoline=30" value="30">
+<div class="clearfix"></div>
+		<label>Цена литра газа (руб.)</label>
+		<input type="number" ng-model="gas" ng-init="gas=12" value="12">
+		
+		<div class="clearfix"></div>
+
+		<label>Расход на 100 км (л)</label>
+		<input type="number" ng-model="mpgImperic" ng-init="mpgImperic=10" value="10">
+		<div class="clearfix"></div>
+		<label>Среднесуточный пробег (км)</label>
+		<input type="number" ng-model="distance" ng-init="distance=70" value="70"> 	    		
+	</div>
+
+	<div class="results">
+		<span>Итог:</span><br>
+		<span> 
+				{{ (gasoline-gas*1.1)*mpgImperic*distance/100 | limitTo:6 }} руб.
+		</span>
+		<label> - Экономия в день</label><br>
+		<span>
+
+				{{ (gasoline-gas*1.1)*(mpgImperic*distance/100)*365 | limitTo:5 | number:2 }} руб.
+
+		</span>
+		<label> - Экономия за год</label><br>
+		<span>
+				{{ ( (cost*100)/((gasoline-gas*1.1)*mpgImperic*distance)) | limitTo:4 }} дн.
+		</span> 
+		<label> - Окупаемость ГБО</label><br>
+	</div>
+</form>

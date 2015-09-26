@@ -1,0 +1,108 @@
+@import "lesshat";
+
+@input-color: #565656;
+@input-background-color: #ded7d3;
+@input-focus-background-color: lighten(@input-background-color, 10%);
+@margin: 25px;
+
+body {
+  background: #000;
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.animate {
+	transition: all .2s;
+}
+
+.calculator {
+	margin-top: 1em;
+	.clearfix;
+	.inputs, .results {
+		float: left;
+	}
+	label, input {
+		font-size: 14px;
+		font-family: Arial;
+    &:after {
+      content: ' ';
+      display: block;
+      clear: both;
+    }
+	}
+	label {
+		cursor: pointer;
+		color: #fff;
+		display: inline-block;
+		line-height: 35px;
+	}
+	* {
+		box-sizing: border-box;
+	}
+	width: 94%;
+	.inputs {
+		width: 66.6666666%;
+		text-align: right;
+
+		input {
+			.animate;
+			border: none;
+			width: 48%;
+			color: @input-color;
+			background: @input-background-color;
+			padding: 10px;
+			margin: 0 0 @margin @margin;
+			&:focus {
+				outline: none;
+				background: @input-focus-background-color;
+				.animate;
+			}
+		}
+	}
+
+	.results {
+		padding-left: @margin;
+		width: 33.3333333%;
+		span {
+			 font: 18px/100% Arial;
+			 color: #fba500;
+		}
+	}
+
+	input::-webkit-input-placeholder {
+	  color: @input-color;
+	}
+
+	input:focus::-webkit-input-placeholder {
+	  color: @input-focus-background-color;
+	}
+
+	input::-moz-input-placeholder {
+	  color: @input-color;
+	}
+
+	input:focus::-moz-input-placeholder {
+	  color: @input-focus-background-color;
+	}
+
+}
+
+@media (max-width: 480px) {
+	.calculator {
+		.inputs,
+		.results {
+			width: 100%;
+			float: none;
+		}		
+	}
+
+}
